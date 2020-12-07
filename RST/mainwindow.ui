@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QWidget" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1122</width>
+    <height>701</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>11</number>
+   </property>
+   <property name="topMargin">
+    <number>11</number>
+   </property>
+   <property name="rightMargin">
+    <number>11</number>
+   </property>
+   <property name="bottomMargin">
+    <number>11</number>
+   </property>
+   <item row="1" column="1">
+    <widget class="QLineEdit" name="ReceptionInput"/>
+   </item>
+   <item row="1" column="3">
+    <widget class="QLineEdit" name="ShipmentInput"/>
+   </item>
+   <item row="2" column="1" alignment="Qt::AlignHCenter">
+    <widget class="QLabel" name="ReceptionLabel">
+     <property name="text">
+      <string>ПРИЁМ</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1" alignment="Qt::AlignLeft">
+    <widget class="QPushButton" name="ClearButton">
+     <property name="text">
+      <string>Очистить</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3" alignment="Qt::AlignHCenter">
+    <widget class="QLabel" name="ShipmentLabel">
+     <property name="text">
+      <string>ОТГРУЗКА</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="3" alignment="Qt::AlignRight">
+    <widget class="QPushButton" name="OpenDictionaryButton">
+     <property name="text">
+      <string>Открыть справочник</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1" colspan="3">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2" rowspan="3">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="3">
+    <widget class="QTableView" name="ShipmentTable">
+     <attribute name="verticalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QTableView" name="ReceptionTable">
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>36</number>
+     </attribute>
+     <attribute name="horizontalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderCascadingSectionResizes">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>ClearButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>clearPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>677</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>560</x>
+     <y>350</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ReceptionInput</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>receptionEntered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>560</x>
+     <y>350</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ShipmentInput</sender>
+   <signal>returnPressed()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>shipmentEntered()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>846</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>560</x>
+     <y>350</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>OpenDictionaryButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openDictionaryPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1045</x>
+     <y>677</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>560</x>
+     <y>350</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>receptionEntered()</slot>
+  <slot>shipmentEntered()</slot>
+  <slot>clearPressed()</slot>
+  <slot>openDictionaryPressed()</slot>
+ </slots>
+</ui>

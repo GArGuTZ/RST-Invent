@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogWindow</class>
+ <widget class="QDialog" name="DialogWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1287</width>
+    <height>686</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0" colspan="8">
+    <widget class="QTableView" name="XMLTable"/>
+   </item>
+   <item row="2" column="0" alignment="Qt::AlignLeft">
+    <widget class="QPushButton" name="OpenXMLButton">
+     <property name="text">
+      <string>Открыть XML</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="7" alignment="Qt::AlignRight">
+    <widget class="QPushButton" name="CloseButton">
+     <property name="text">
+      <string>Закрыть</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="5">
+    <widget class="QLineEdit" name="EntryInput"/>
+   </item>
+   <item row="0" column="5">
+    <widget class="QPushButton" name="AddEntryButton">
+     <property name="text">
+      <string>Добавить новую запись</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="7">
+    <widget class="QPushButton" name="NewXMLButton">
+     <property name="text">
+      <string>Создать новый XML</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="SaveXMLButton">
+     <property name="text">
+      <string>Сохранить</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>OpenXMLButton</sender>
+   <signal>released()</signal>
+   <receiver>DialogWindow</receiver>
+   <slot>openXML()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>50</x>
+     <y>550</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>508</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CloseButton</sender>
+   <signal>released()</signal>
+   <receiver>DialogWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>965</x>
+     <y>550</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>508</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>NewXMLButton</sender>
+   <signal>released()</signal>
+   <receiver>DialogWindow</receiver>
+   <slot>newXML()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>508</x>
+     <y>550</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>508</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>AddEntryButton</sender>
+   <signal>released()</signal>
+   <receiver>DialogWindow</receiver>
+   <slot>addEntry()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1200</x>
+     <y>23</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>643</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SaveXMLButton</sender>
+   <signal>released()</signal>
+   <receiver>DialogWindow</receiver>
+   <slot>saveXML()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>245</x>
+     <y>662</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>643</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>openXML()</slot>
+  <slot>newXML()</slot>
+  <slot>addEntry()</slot>
+  <slot>saveXML()</slot>
+ </slots>
+</ui>
