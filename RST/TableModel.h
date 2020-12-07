@@ -59,7 +59,8 @@ public:
     Qt::ItemFlags flags(const QModelIndex& _index) const override;
 
     void addEntries(QMap<QString, QString>* _list);
-    void removeEntries(QStringList* _list);
+    void removeEntries(QMap<QString, QString>* _list);
+    void clear();
 private:
     QMap<QString, QString> dictionaryMap_;
     QMap<QString, int> tableMap_;

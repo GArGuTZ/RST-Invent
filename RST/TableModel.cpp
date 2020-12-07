@@ -162,23 +162,6 @@ int MainTableModel::columnCount(const QModelIndex & parent) const
     return 2;
 }
 
-QVariant MainTableModel::data(const QModelIndex& index, int role) const
-{
-    if (index.row() < 0 || index.row() >= tableMap_.size() || role != Qt::DisplayRole)
-    {
-        return QVariant();
-    }
-    if (index.column() == 0)
-    {
-        return dictionaryMap_.values().at(index.row());
-    }
-    if (index.column() == 1)
-    {
-        return tableMap_.values().at(index.row());
-    }
-    return QVariant();
-}
-
 void MainTableModel::addEntries(QMap<QString, QString>* _list)
 {
     emit layoutAboutToBeChanged();
@@ -198,23 +181,48 @@ void MainTableModel::addEntries(QMap<QString, QString>* _list)
     emit layoutChanged();
 }
 
-void MainTableModel::removeEntries(QStringList* _list)
+void MainTableModel::removeEntries(QMap<QString, QString>* _list)
 {
     emit layoutAboutToBeChanged();
     int entryListLength = _list->size();
     for (int i = 0; i < entryListLength; ++i)
     {
-        if (tableMap_.contains(_list->at(i)))
+        if (tableMap_.contains(_list->keys().at(i)))
         {
-            --tableMap_[_list->at(i)];
+            --tableMap_[_list->keys().at(i)];
         }
-        if(tableMap_.value(_list->at(i)) <= 0)
+        if(tableMap_.value(_list->keys().at(i)) <= 0)
         {
-            tableMap_.remove(_list->at(i));
-            dictionaryMap_.remove(_list->at(i));
+            tableMap_.remove(_list->keys().at(i));
+            dictionaryMap_.remove(_list->keys().at(i));
         }
     }
     emit layoutChanged();
+}
+
+void MainTableModel::clear()
+{
+    emit layoutAboutToBeChanged();
+    tableMap_.clear();
+    dictionaryMap_.clear();
+    emit layoutChanged();
+}
+
+QVariant MainTableModel::data(const QModelIndex& index, int role) const
+{
+    if (index.row() < 0 || index.row() >= tableMap_.size() || role != Qt::DisplayRole)
+    {
+        return QVariant();
+    }
+    if (index.column() == 0)
+    {
+        return dictionaryMap_.values().at(index.row());
+    }
+    if (index.column() == 1)
+    {
+        return tableMap_.values().at(index.row());
+    }
+    return QVariant();
 }
 
 QVariant MainTableModel::headerData(int _section, Qt::Orientation _orientation, int _role) const

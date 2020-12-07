@@ -6,7 +6,6 @@ DialogWindow::DialogWindow(QWidget *parent) :
     ui_(new Ui::DialogWindow)
 {
     ui_->setupUi(this);
-    //ui_->XMLTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 DialogWindow::~DialogWindow()
@@ -250,7 +249,6 @@ void DialogWindow::addEntry()
     TableModel_.addEntries(&matchedEntries);
     ui_->XMLTable->setModel(&TableModel_);
     ui_->XMLTable->resizeColumnsToContents();
-
 }
 
 void DialogWindow::removeEntries()
