@@ -253,6 +253,20 @@ void DialogWindow::addEntry()
 
 }
 
+void DialogWindow::removeEntries()
+{
+    QModelIndexList selection = ui_->XMLTable->selectionModel()->selectedRows();
+    int rowsCount = selection.count();
+    //qDebug() << "Number of rows to delete is " << rowsCount;
+
+    for(int i = rowsCount - 1; i >= 0; --i)
+    {
+        QModelIndex index = selection.at(i);
+        //qDebug() << index.row();
+        TableModel_.removeEntry(index.row(), index);
+    }
+}
+
 QMap<QString, QString> DialogWindow::get_dictionary(QStringList* _list)
 {
     return TableModel_.get_ValidEntries(_list);

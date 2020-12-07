@@ -41,11 +41,9 @@ public:
     QMap<QString, QString> get_Entries(); // Function returns all entries from dictionary
     void addEntries(QStringList* _list); // Used for adding entries from input to loaded dictionary
     void addEntries(QMap<QString, QString>* _list); // Used for adding entries from dictionary
-    void removeEntries(QStringList* _list);
+    void removeEntry(int _position, const QModelIndex& _parent); // Remove entry from loaded dictionary
 private:
     QMap<QString, QString> dictionaryMap_;
-signals:
-    //void editCompleted(const QString &);
 };
 
 class MainTableModel: public TableModel
@@ -65,8 +63,6 @@ public:
 private:
     QMap<QString, QString> dictionaryMap_;
     QMap<QString, int> tableMap_;
-signals:
-    //void editCompleted(const QString &);
 };
 
 #endif // TABLEMODEL_H

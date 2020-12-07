@@ -55,6 +55,13 @@
      </property>
     </widget>
    </item>
+   <item row="2" column="5">
+    <widget class="QPushButton" name="DeleteButton">
+     <property name="text">
+      <string>Удалить выбранные записи</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
@@ -139,11 +146,28 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>DeleteButton</sender>
+   <signal>released()</signal>
+   <receiver>DialogWindow</receiver>
+   <slot>removeEntries()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>877</x>
+     <y>662</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>643</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>openXML()</slot>
   <slot>newXML()</slot>
   <slot>addEntry()</slot>
   <slot>saveXML()</slot>
+  <slot>removeEntries()</slot>
  </slots>
 </ui>

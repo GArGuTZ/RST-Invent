@@ -27,6 +27,7 @@ private slots:
     void saveXML(); // Used for creating new dictionary from opened table
     void openXML(); // Used for loading dictionary
     void addEntry(); // Used for adding entries from input to the opened table
+    void removeEntries();
 
 private:
     void fill_Document(); // Function takes user input & builds DomDocument

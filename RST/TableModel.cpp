@@ -18,42 +18,33 @@ int DictionaryTableModel::columnCount(const QModelIndex& _parent) const
 
 QVariant DictionaryTableModel::data(const QModelIndex& _index, int _role) const
 {
-    if( _role == Qt::DisplayRole)
-    {
-        //qDebug() << "Qt::DisplayRole";
-    }
-    if( _role == Qt::EditRole)
-    {
-       // qDebug() << "Qt::EditRole";
-    }
-
-    if (_index.row() < 0 || _index.row() >= dictionaryMap_.size() || _role != Qt::DisplayRole)
+    if (_index.row() < 0 || _index.row() >= dictionaryMap_.size())
     {
         return QVariant();
     }
-    if (_index.column() == 0 && _role == Qt::DisplayRole)
+
+    if( _role == Qt::DisplayRole)
     {
-        //switch (_role)
-        //{
-        //case Qt::DisplayRole:
-        //case Qt::EditRole:
-        //    return dictionaryMap_.keys().at(_index.row());
-        //}
-        qDebug() << dictionaryMap_.keys().at(_index.row());
-        return dictionaryMap_.keys().at(_index.row());
+        if (_index.column() == 0)
+        {
+            return dictionaryMap_.keys().at(_index.row());
+        }
+        if (_index.column() == 1)
+        {
+            return dictionaryMap_.values().at(_index.row());
+        }
     }
-    if (_index.column() == 1 && _role == Qt::DisplayRole)
+    if( _role == Qt::EditRole)
     {
-        //switch (_role)
-        //{
-        //case Qt::DisplayRole:
-        //case Qt::EditRole:
-        //    return dictionaryMap_.values().at(_index.row());
-        //}
-        qDebug() << dictionaryMap_.values().at(_index.row());
-        return dictionaryMap_.values().at(_index.row());
+        if (_index.column() == 0)
+        {
+            return dictionaryMap_.keys().at(_index.row());
+        }
+        if (_index.column() == 1)
+        {
+            return dictionaryMap_.values().at(_index.row());
+        }
     }
-    qDebug() << "End";
     return QVariant();
 }
 
@@ -84,7 +75,6 @@ bool DictionaryTableModel::setData(const QModelIndex& _index, const QVariant& _v
 
         dictionaryMap_.insert(dictionaryMap_.keys().at(_index.row()), _value.toString());
         emit dataChanged(_index, _index, {_role});
-        //emit editCompleted(_value.toString());
 
         return true;
     }
@@ -145,8 +135,8 @@ void DictionaryTableModel::addEntries(QStringList* _list)
 void DictionaryTableModel::addEntries(QMap<QString, QString>* _list)
 {
     emit layoutAboutToBeChanged();
-    int entryListLength = _list->size();
     dictionaryMap_.clear();
+    int entryListLength = _list->size();
     for (int i = 0; i < entryListLength; ++i)
     {
         dictionaryMap_.insert(_list->keys().at(i), _list->values().at(i));
@@ -154,13 +144,12 @@ void DictionaryTableModel::addEntries(QMap<QString, QString>* _list)
     emit layoutChanged();
 }
 
-void DictionaryTableModel::removeEntries(QStringList* _list)
+void DictionaryTableModel::removeEntry(int _position, const QModelIndex& _parent)
 {
-    int entryListLength = _list->size();
-    for (int i = 0; i < entryListLength; ++i)
-    {
-        dictionaryMap_.remove(_list->at(i));
-    }
+    beginRemoveRows(QModelIndex(), _position, _position);
+    dictionaryMap_.remove(dictionaryMap_.keys().at(_position));
+    //qDebug() << "Delete row " << _position;
+    endRemoveRows();
 }
 
 int MainTableModel::rowCount(const QModelIndex& parent) const
